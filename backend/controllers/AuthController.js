@@ -1,34 +1,26 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User } = require("../models"); // Mengimpor User dari models
-const { Sequelize } = require("../models"); // Mengimpor Sequelize untuk Op.or
+const { User } = require("../models");
+const { Sequelize } = require("../models");
 
 const login = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password } = req.body; // Menggunakan 'id' untuk email atau username
 
-  // Memastikan email atau username dan password diberikan
-  if ((!email && !username) || !password) {
+  // Memastikan id dan password diberikan
+  if (!email || !password) {
     return res
       .status(400)
       .json({ message: "Email/Username and password are required!" });
   }
 
-  try {
-    // Validasi apakah username atau email ada dalam request body
-    if (!email && !username) {
-      return res
-        .status(400)
-        .json({ message: "Email or username is required!" });
-    }
+  // Regex untuk memvalidasi format email
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const whereClause = isEmail ? { email: email } : { username: email };
 
+  try {
     // Mencari user berdasarkan email atau username
     const user = await User.findOne({
-      where: {
-        [Sequelize.Op.or]: [
-          { email: email || "" }, // Jika email tidak ada, kirim null
-          { username: username || "" }, // Jika username tidak ada, kirim null
-        ],
-      },
+      where: whereClause,
     });
 
     if (!user) {
@@ -44,7 +36,7 @@ const login = async (req, res) => {
 
     // Menghasilkan JWT token
     const token = jwt.sign(
-      { id: user.user_id, email: user.email }, // Menggunakan user_id sebagai id
+      { id: user.user_id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -54,7 +46,7 @@ const login = async (req, res) => {
       user_id: user.user_id,
     });
   } catch (err) {
-    console.error(err); // Untuk debugging jika terjadi error
+    console.error(err);
     return res.status(500).json({ message: "An error occurred during login." });
   }
 };

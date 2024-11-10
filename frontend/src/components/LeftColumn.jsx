@@ -11,6 +11,7 @@ import {
   faStar,
   faUser,
   faEllipsisH,
+  faBookBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import "./LeftColumn.css";
 

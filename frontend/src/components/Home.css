@@ -10,21 +10,21 @@
 
 /* Header Styles */
 .header {
+  padding: 15px;
+
   display: flex;
   align-items: center;
-  padding: 20px;
   color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%; /* Pastikan header mengambil lebar penuh */
-  max-width: 1300px; /* Batasan lebar header */
+  max-width: 1270px; /* Batasan lebar header */
   margin: 0 auto; /* Posisikan header di tengah */
-  gap: 20px; /* Jarak antar elemen header */
 }
 
 /* Logo Section */
 .header .logo {
-  flex: 0 1 auto; /* Keeps logo to the left */
-  max-width: 200px;
+  max-width: 25px;
+  height: 100%; /* Pastikan logo memiliki tinggi penuh dari header */
 }
 
 .header .logo h1 {

@@ -121,41 +121,26 @@
 /* Styling untuk menu pop-up dengan tema gelap */
 .logout-menu {
   position: absolute;
-  top: 720px; /* Sesuaikan posisi dari elemen profile */
-  right: 1375px;
-  background-color: #333; /* Mengubah latar belakang ke warna gelap */
+  top: 760px; /* Sesuaikan posisi dari elemen profile */
+  right: 1265px;
+  background-color: #000000; /* Mengubah latar belakang ke warna gelap */
   border: 1px solid #555; /* Warna border lebih gelap */
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan lebih gelap */
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.212); /* Menambahkan bayangan lebih gelap */
   padding: 12px;
-  width: 220px;
+  width: 320px;
+  text-align: right;
 }
 
 /* Styling untuk tombol di dalam logout-menu */
 .logout-menu button {
-  background-color: #1da1f2; /* Warna biru tombol */
   color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
+  padding: 4px 15px;
   cursor: pointer;
   margin: 5px 0;
   width: 100%;
   font-weight: bold; /* Menambahkan ketebalan font */
-}
-
-/* Hover effect untuk tombol */
-.logout-menu button:hover {
-  background-color: #1796d0; /* Biru lebih gelap saat hover */
-}
-
-/* Tombol terakhir dengan warna latar belakang yang lebih gelap */
-.logout-menu button:last-child {
-  background-color: #444; /* Warna latar belakang lebih gelap untuk tombol terakhir */
-  color: #ddd; /* Warna teks lebih terang */
-}
-
-/* Hover effect untuk tombol terakhir */
-.logout-menu button:last-child:hover {
-  background-color: #555; /* Biru lebih gelap saat hover */
+  font-size: medium;
+  background-color: #000000;
+  text-align: left;
 }

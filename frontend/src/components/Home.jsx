@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import LeftColumn from "./LeftColumn";
 import CenterColumn from "./CenterColumn";
 import RightColumn from "./RightColumn";
-import "./Home.css"; // Pastikan tetap memiliki file CSS global
+import Logo from "../assets/xicon.svg"; // Mengimpor logo
+import "./Home.css";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -44,7 +45,7 @@ const Home = () => {
     <div className="home-container">
       <header className="header">
         <div className="logo">
-          <h1>LogoX</h1>
+          <img src={Logo} alt="Logo" /> {/* Replace text with logo image */}
         </div>
         <nav className="nav-links">
           <a href="#">For You</a>
