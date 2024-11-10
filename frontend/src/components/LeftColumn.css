@@ -1,0 +1,161 @@
+/* LeftColumn Styles */
+.left-column {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Status Links */
+.status-links {
+  padding: 0;
+}
+
+.status-links li {
+  margin-bottom: 15px;
+}
+
+.status-links li a {
+  font-size: 24px;
+  color: #ffffff;
+  padding: 10px; /* Increased padding for better spacing */
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.status-links li a:hover {
+  background-color: #444;
+  border-radius: 30px;
+}
+
+.status-links li a .fa {
+  margin-right: 15px; /* Tambah jarak */
+}
+/* Post Button */
+.post-button {
+  background-color: #1da1f2;
+  color: white;
+  padding: 15px;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.post-button:hover {
+  background-color: #1796d0;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-actions button:hover {
+  background-color: #1796d0;
+}
+
+/* User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.profile-photo img {
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.profile-info .username {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.profile-info .user-handle {
+  font-size: 14px;
+  color: #aaa;
+}
+/* Styling untuk titik tiga */
+.ellipsis-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  color: #aaa;
+}
+
+/* Styling untuk menu pop-up dengan tema gelap */
+.logout-menu {
+  position: absolute;
+  top: 720px; /* Sesuaikan posisi dari elemen profile */
+  right: 1375px;
+  background-color: #333; /* Mengubah latar belakang ke warna gelap */
+  border: 1px solid #555; /* Warna border lebih gelap */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan lebih gelap */
+  padding: 12px;
+  width: 220px;
+}
+
+/* Styling untuk tombol di dalam logout-menu */
+.logout-menu button {
+  background-color: #1da1f2; /* Warna biru tombol */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+  width: 100%;
+  font-weight: bold; /* Menambahkan ketebalan font */
+}
+
+/* Hover effect untuk tombol */
+.logout-menu button:hover {
+  background-color: #1796d0; /* Biru lebih gelap saat hover */
+}
+
+/* Tombol terakhir dengan warna latar belakang yang lebih gelap */
+.logout-menu button:last-child {
+  background-color: #444; /* Warna latar belakang lebih gelap untuk tombol terakhir */
+  color: #ddd; /* Warna teks lebih terang */
+}
+
+/* Hover effect untuk tombol terakhir */
+.logout-menu button:last-child:hover {
+  background-color: #555; /* Biru lebih gelap saat hover */
+}

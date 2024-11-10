@@ -34,14 +34,18 @@ const Login = () => {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user_id", data.user_id);
+
         navigate("/home"); // Redirect ke halaman Home setelah login berhasil
       } else {
         setError(data.message || "Login gagal, periksa email dan password!");
         localStorage.removeItem("token"); // Hapus token jika login gagal
+        localStorage.removeItem("user_id");
       }
     } catch (err) {
       setError("Terjadi kesalahan saat login.");
       localStorage.removeItem("token"); // Hapus token jika ada kesalahan
+      localStorage.removeItem("user_id");
     }
   };
 

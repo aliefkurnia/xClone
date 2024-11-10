@@ -1,0 +1,6 @@
+.center-column {
+  width: 45%;
+  padding: 20px;
+  box-shadow: 0 0 0 0.2px rgba(255, 255, 255, 1);
+  padding: 10px; /* Tambahkan padding jika diperlukan */
+}
