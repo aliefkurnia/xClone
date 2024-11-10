@@ -1,0 +1,371 @@
+/* Reset default margin dan padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Verdana", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap: 300px; /* Mengurangi gap antara logo dan form */
+  padding: 20px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 350px; /* Lebar container logo */
+}
+
+.logo {
+  width: 100%; /* Logo akan mengikuti lebar container */
+  height: auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  background-color: #1c1c1c00;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 700px; /* Lebar maksimal form */
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 40px;
+  font-size: 60px;
+  color: #fff;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #bbb;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 25px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1da1f2;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1da1f2;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+button:hover {
+  background-color: #0d8dbe;
+  transform: scale(1.02);
+}
+
+button:disabled {
+  background-color: #666;
+}
+
+.sign-in-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sign-in-options button {
+  background-color: #333;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 25px;
+  padding: 12px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.sign-in-options button:hover {
+  background-color: #444;
+}
+
+.or-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  margin: 20px 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #444;
+}
+
+.or-divider::before {
+  margin-right: 10px;
+}
+
+.or-divider::after {
+  margin-left: 10px;
+}
+
+.signup-section {
+  text-align: center;
+  font-size: 14px;
+  color: #bbb;
+  margin-top: 20px;
+}
+
+.signup-section a {
+  color: #1da1f2;
+  text-decoration: none;
+}
+
+.signup-section a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #ff3b30;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Footer styling */
+.footer {
+  font-size: 12px;
+  font-weight: 100;
+  padding: 6px 0;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #00000000;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: #9c9c9c;
+  text-decoration: none;
+  margin: 10px 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.separator hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.separator span {
+  color: #bbb;
+  font-size: 14px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1c1c1c;
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #1da1f2;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0d8dbe;
+}
+
+/* White button styling for Google and Apple buttons */
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.social-login button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.social-login button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style for icons inside buttons */
+.icon {
+  font-size: 20px;
+}
+.google-btn .icon {
+  color: #4285f4; /* Warna biru khas Google */
+}
+
+.apple-btn .icon {
+  color: #000; /* Warna hitam untuk Apple */
+}
+
+.create-account p {
+  font-size: 10px; /* Ukuran font lebih kecil */
+  line-height: 1.5; /* Jarak antar baris agar lebih nyaman dibaca */
+  color: #bbb; /* Warna teks yang lebih soft */
+  margin-bottom: 15px; /* Spasi bawah agar tidak terlalu rapat dengan tombol */
+}
+.social-login,
+.separator,
+.create-account,
+.existing-account {
+  width: 100%; /* Pastikan elemen-elemen ini memiliki lebar 100% */
+  max-width: 300px; /* Setel max-width agar elemen ini tetap 400px */
+}
+
+.google-btn,
+.apple-btn {
+  width: 100%;
+  max-width: 400px; /* Setel max-width agar tombol tetap 400px */
+}
+.existing-account {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: 30px;
+  flex-direction: column;
+}
+.existing-account p {
+  margin-bottom: 16px;
+}
+
+.account-text {
+  font-size: 16px;
+  color: #fff; /* Warna teks yang lebih lembut */
+  font-weight: bold;
+}
+
+.sign-in-button {
+  background-color: #000; /* Warna hitam untuk latar belakang tombol */
+  border: 0.01px solid #fff; /* Garis pinggir berwarna putih */
+  color: #1da1f2; /* Warna font biru */
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 8px 15px;
+  margin-left: 8px;
+  border-radius: 25px; /* Membuat sudut tombol melengkung */
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.sign-in-button:hover {
+  background-color: #0d8cbe21; /* Mengubah warna latar belakang tombol saat hover */
+  color: #fff; /* Mengubah warna font menjadi putih saat hover */
+  transform: scale(1.05); /* Efek zoom saat hover */
+}
+
+.sign-in-button:focus {
+  outline: none; /* Menghilangkan outline saat tombol difokuskan */
+}
