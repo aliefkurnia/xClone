@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# xClone - Twitter Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+xClone adalah proyek kloning dari platform Twitter (atau X) yang menggunakan berbagai teknologi modern. Dalam proyek ini, Anda akan membangun sebuah aplikasi dengan fitur dasar seperti posting tweet, mengikuti pengguna, dan berinteraksi dengan timeline.
 
-## Available Scripts
+## Stack Teknologi
 
-In the project directory, you can run:
+Proyek ini dibangun dengan menggunakan stack berikut:
 
-### `npm start`
+- **Backend**:
+  - **Node.js** dengan **Express** untuk membangun RESTful API.
+  - **Sequelize** sebagai ORM untuk berinteraksi dengan database **PostgreSQL**.
+  - **Bcrypt.js** untuk enkripsi password.
+  - **Morgan** untuk logging HTTP requests.
+  
+- **Frontend**:
+  - **React.js** untuk membangun user interface yang interaktif.
+  - **ReactDOM** untuk rendering aplikasi di browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Database**:
+  - **PostgreSQL** untuk menyimpan data pengguna, tweet, dan interaksi lainnya.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Fitur
 
-### `npm test`
+- Pengguna dapat mendaftar dan masuk ke aplikasi menggunakan email dan password.
+- Pengguna dapat membuat, melihat, dan menghapus tweet.
+- Pengguna dapat mengikuti dan berhenti mengikuti pengguna lain.
+- Pengguna dapat melihat timeline yang berisi tweet dari pengguna yang mereka ikuti.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalasi
 
-### `npm run build`
+Untuk memulai proyek ini, Anda perlu menginstal dependensi backend dan frontend secara terpisah.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Instalasi Backend (Server)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone repositori ini:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/aliefkurnia/xClone.git
+2. Masuk ke direktori backend:
 
-### `npm run eject`
+    Copy code
+    ```bash
+    cd xClone/backend
+3. Instal dependensi:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    Copy code
+    ```bash
+    npm install
+4. Konfigurasikan database PostgreSQL di file config/config.json.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Jalankan migrasi database untuk membuat tabel:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Copy code
+```bash
+npx sequelize-cli db:migrate
+```
+Jalankan server:
+Copy code
+```bash
+npm start
+Server backend akan berjalan di http://localhost:5000.
+```
+### 2. Instalasi Frontend (React App)
+1. Pindah ke direktori frontend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Copy code
+```bash
+cd xClone/frontend
+```
+2.Instal dependensi:
+Copy code
+```bash
+npm install
+```
+3. Jalankan aplikasi React:
+Copy code
+```bash
+npm start
+Aplikasi React akan berjalan di http://localhost:3000.
+```
+Menjalankan Aplikasi
+Setelah menginstal dan menjalankan server backend dan aplikasi frontend, Anda bisa mengakses aplikasi di browser melalui URL:
 
-## Learn More
+Frontend: http://localhost:3000
+Backend: http://localhost:5000
+Pengujian
+Untuk menguji aplikasi, Anda bisa menjalankan unit test dengan perintah berikut di direktori backend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+bash
+```Copy code
+npm test
+```
+## Struktur Proyek
+### Backend
+config: Konfigurasi untuk database dan aplikasi.
+controllers: Berisi logika untuk menangani HTTP requests.
+models: Model database yang berinteraksi dengan PostgreSQL menggunakan Sequelize.
+routes: Menyediakan endpoint untuk API.
+middleware: Middleware untuk autentikasi dan logging (seperti morgan).
+utils: Fungsi utilitas seperti enkripsi password dengan bcrypt.
+### Frontend
+src:
+components: Komponen React untuk membangun UI.
+services: Fungsi untuk berinteraksi dengan API backend.
+App.js: File utama aplikasi React.
+index.js: Entry point untuk aplikasi React.
+Kontribusi
+Jika Anda ingin berkontribusi pada proyek ini, silakan fork repositori ini dan buat pull request dengan deskripsi perubahan yang Anda buat.
