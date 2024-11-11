@@ -11,14 +11,15 @@ import {
   faStar,
   faUser,
   faEllipsisH,
-  faBookBookmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom"; // Import useNavigate untuk redirect
 import "./LeftColumn.css";
 
 const LeftColumn = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [username, setUsername] = useState(""); // Tambahkan state untuk username
+  const navigate = useNavigate(); // Hook untuk redirect
 
   useEffect(() => {
     // Ambil username dari localStorage saat komponen dimount
@@ -27,6 +28,7 @@ const LeftColumn = ({ user }) => {
       setUsername(storedUsername);
     }
   }, []);
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -52,6 +54,16 @@ const LeftColumn = ({ user }) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  // Fungsi untuk Logout dan redirect ke halaman login
+  const handleLogout = () => {
+    // Hapus data pengguna dari localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+
+    // Redirect ke halaman login
+    navigate("/login");
+  };
 
   return (
     <div className="left-column">
@@ -133,7 +145,7 @@ const LeftColumn = ({ user }) => {
           <div className="logout-menu">
             <button>Add an existing account</button>
             {/* Tambahkan username dinamis ke dalam tombol Logout */}
-            <button>Logout {user?.username}</button>
+            <button onClick={handleLogout}>Logout {user?.username}</button>
           </div>
         )}
       </section>
@@ -141,11 +153,11 @@ const LeftColumn = ({ user }) => {
       {/* Profil Pengguna */}
       <section className="user-profile">
         <div className="profile-photo">
-          <img src="{user?.profile_picture}" alt="User Avatar" />
+          <img src={user?.profile_picture} alt="User Avatar" />
         </div>
         <div className="profile-info">
-          <p className="username">{user?.username}</p>
-          <p className="user-handle">@{user?.email}</p>
+          <p className="username">{user?.name}</p>
+          <p className="user-handle">@{user?.username}</p>
         </div>
         <div>
           {/* Titik Tiga */}

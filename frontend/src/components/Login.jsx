@@ -135,7 +135,7 @@ const Login = () => {
               <div className="input-group">
                 <label htmlFor="email">Email or Username:</label>
                 <input
-                  id="id"
+                  id="email"
                   type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

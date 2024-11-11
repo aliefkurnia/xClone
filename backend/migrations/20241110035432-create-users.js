@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false, // Kolom nama asli pengguna wajib diisi
+      },
       username: {
         type: Sequelize.STRING,
         allowNull: false,

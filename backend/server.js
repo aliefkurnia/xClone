@@ -28,7 +28,7 @@ app.listen(PORT, () => {
   console.log(`Server berjalan di port ${PORT}`);
 
   // Sinkronisasi database
-  //   sequelize.sync({ force: false }).then(() => {
-  //     console.log("Database & tabel berhasil disinkronkan!");
-  //   });
+  sequelize.sync({ alter: true }).then(() => {
+    console.log("Database & tabel berhasil disinkronkan!");
+  });
 });

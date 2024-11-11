@@ -5,17 +5,20 @@ const UserController = {
   // Membuat pengguna baru
   createUser: async (req, res) => {
     try {
-      const { username, email, password, bio, profile_picture } = req.body;
+      const { name, username, email, password, bio, profile_picture } =
+        req.body;
       console.log(req.body);
 
       // Periksa apakah ada field yang hilang
-      if (!username || !email || !password) {
+      if (!name || !username || !email || !password) {
         return res.status(400).json({
-          message: "Missing required fields: username, email, and password",
+          message:
+            "Missing required fields: name, username, email, and password",
         });
       }
 
       const user = await User.create({
+        name,
         username,
         email,
         password,
@@ -59,8 +62,10 @@ const UserController = {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      const { username, email, password, bio, profile_picture } = req.body;
+      const { name, username, email, password, bio, profile_picture } =
+        req.body;
       await user.update({
+        name,
         username,
         email,
         password,
