@@ -11,6 +11,13 @@ const Login = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] =
     useState(false);
+  const [newUser, setNewUser] = useState({
+    fullName: "",
+    email: "",
+    username: "",
+    password: "",
+  });
+  const [createError, setCreateError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,6 +29,7 @@ const Login = () => {
     }
 
     try {
+      setLoading(true); // Menambahkan loading state
       const response = await fetch("http://localhost:5000/api/login", {
         method: "POST",
         headers: {
@@ -46,6 +54,41 @@ const Login = () => {
       setError("Terjadi kesalahan saat login.");
       localStorage.removeItem("token"); // Hapus token jika ada kesalahan
       localStorage.removeItem("user_id");
+    } finally {
+      setLoading(false); // Menghentikan loading setelah proses selesai
+    }
+  };
+
+  const handleCreateAccountSubmit = async (e) => {
+    e.preventDefault();
+
+    const { fullName, email, username, password } = newUser;
+
+    if (!fullName || !email || !username || !password) {
+      setCreateError("Semua field wajib diisi!");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fullName, email, username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCreateError("");
+        setIsCreateAccountModalOpen(false); // Tutup modal setelah berhasil
+        navigate("/login");
+      } else {
+        setCreateError(data.message || "Pendaftaran gagal, coba lagi.");
+      }
+    } catch (err) {
+      setCreateError("Terjadi kesalahan saat mendaftar.");
     }
   };
 
@@ -66,7 +109,6 @@ const Login = () => {
         <h1>Happening Now</h1>
         <h2>Join today.</h2>
 
-        {/* Tombol Sign in with Google dan Apple */}
         <div className="social-login">
           <button className="google-btn">
             <i className="fab fa-google icon"></i> Sign in with Google
@@ -76,14 +118,12 @@ const Login = () => {
           </button>
         </div>
 
-        {/* Separator */}
         <div className="separator">
           <hr />
           <span>or</span>
           <hr />
         </div>
 
-        {/* Create Account link */}
         <div className="create-account">
           <button onClick={openCreateAccountModal}>Create Account</button>
           <p>
@@ -92,7 +132,6 @@ const Login = () => {
           </p>
         </div>
 
-        {/* Already have an account? Sign in link */}
         <div className="existing-account">
           <p className="account-text">Already have an account? </p>
           <button onClick={openSignInModal} className="sign-in-button">
@@ -101,7 +140,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Footer tetap berada di bawah */}
       <footer className="footer">
         <div className="footer-links">
           <a href="#">About</a>
@@ -166,8 +204,61 @@ const Login = () => {
         <div className="modal">
           <div className="modal-content">
             <h2>Create Account</h2>
+            {createError && <p className="error-message">{createError}</p>}
+            <form onSubmit={handleCreateAccountSubmit}>
+              <div className="input-group">
+                <label htmlFor="fullName">Full Name:</label>
+                <input
+                  id="fullName"
+                  type="text"
+                  value={newUser.fullName}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, fullName: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  id="email"
+                  type="email"
+                  value={newUser.email}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, email: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="username">Username:</label>
+                <input
+                  id="username"
+                  type="text"
+                  value={newUser.username}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, username: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                  id="password"
+                  type="password"
+                  value={newUser.password}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, password: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <button type="submit" disabled={loading}>
+                {loading ? "Sedang memproses..." : "Sign Up"}
+              </button>
+            </form>
             <button onClick={closeCreateAccountModal}>Close</button>
-            {/* Isi form atau konten create account di sini */}
           </div>
         </div>
       )}

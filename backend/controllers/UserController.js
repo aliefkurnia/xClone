@@ -1,4 +1,3 @@
-// backend/controllers/UserController.js
 const { User } = require("../models");
 
 const UserController = {
@@ -17,6 +16,15 @@ const UserController = {
         });
       }
 
+      // Periksa apakah email sudah terdaftar
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ message: "Email has already been taken." });
+      }
+
+      // Buat pengguna baru jika email belum terdaftar
       const user = await User.create({
         name,
         username,
@@ -26,9 +34,20 @@ const UserController = {
         profile_picture,
       });
 
-      res.status(201).json(user);
+      res.status(201).json({
+        message: "User created successfully",
+        user: {
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          email: user.email,
+        },
+      });
     } catch (err) {
-      res.status(500).json({ message: "Error creating user", error: err });
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: "Error creating user", error: err.message });
     }
   },
 
@@ -38,7 +57,10 @@ const UserController = {
       const users = await User.findAll();
       res.status(200).json(users);
     } catch (err) {
-      res.status(500).json({ message: "Error fetching users", error: err });
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: "Error fetching users", error: err.message });
     }
   },
 
@@ -51,7 +73,10 @@ const UserController = {
       }
       res.status(200).json(user);
     } catch (err) {
-      res.status(500).json({ message: "Error fetching user", error: err });
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: "Error fetching user", error: err.message });
     }
   },
 
@@ -62,6 +87,7 @@ const UserController = {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
+
       const { name, username, email, password, bio, profile_picture } =
         req.body;
       await user.update({
@@ -72,9 +98,15 @@ const UserController = {
         bio,
         profile_picture,
       });
-      res.status(200).json(user);
+      res.status(200).json({
+        message: "User updated successfully",
+        user,
+      });
     } catch (err) {
-      res.status(500).json({ message: "Error updating user", error: err });
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: "Error updating user", error: err.message });
     }
   },
 
@@ -88,7 +120,10 @@ const UserController = {
       await user.destroy();
       res.status(200).json({ message: "User deleted successfully" });
     } catch (err) {
-      res.status(500).json({ message: "Error deleting user", error: err });
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: "Error deleting user", error: err.message });
     }
   },
 };
