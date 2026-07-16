@@ -1,7 +1,6 @@
 "use strict";
 
 const { Model } = require("sequelize");
-const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -41,13 +40,13 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false, // Nama asli pengguna wajib ada
+        allowNull: false,
       },
       username: {
         type: DataTypes.STRING,
@@ -56,12 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
       },
       bio: {
         type: DataTypes.TEXT,
@@ -81,13 +75,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-
-  User.addHook("beforeCreate", async (user, options) => {
-    if (user.password) {
-      const hashedPassword = await bcrypt.hash(user.password, 10);
-      user.password = hashedPassword;
-    }
-  });
 
   return User;
 };

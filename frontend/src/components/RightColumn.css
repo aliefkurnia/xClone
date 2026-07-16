@@ -1,63 +1,352 @@
 .right-column {
-  padding: 20px;
-  border-radius: 8px;
-  flex: 1;
-  max-width: 800px;
-  color: #ffffff; /* Teks berwarna putih */
-  margin-top: 20px;
+  width: 350px;
+  flex-shrink: 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.right-column > div {
-  margin-bottom: 30px; /* Memberikan jarak antar section */
-  padding: 20px; /* Padding di dalam box */
-  border-radius: 8px; /* Sudut tumpul */
-  border: 1px solid transparent; /* Membuat border transparan */
-  box-shadow: 0 0 0 0.2px rgba(255, 255, 255, 1); /* Box shadow untuk efek outline */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #16181c;
+  border-radius: 9999px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
 }
 
-.right-column h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #ffffff; /* Teks heading putih */
+.search-box.focused {
+  background-color: transparent;
+  border-color: #1d9bf0;
 }
 
-.right-column ul {
+.search-box i {
+  color: #71767b;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.search-box.focused i {
+  color: #1d9bf0;
+}
+
+.search-box input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #e7e9ea;
+  font-size: 15px;
+  width: 100%;
+}
+
+.search-box input::placeholder {
+  color: #71767b;
+}
+
+.premium-box {
+  background-color: #16181c;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.premium-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #e7e9ea;
+  margin: 0 0 8px;
+}
+
+.premium-box p {
+  font-size: 15px;
+  color: #e7e9ea;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.subscribe-btn {
+  background-color: #1d9bf0;
+  color: #fff;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.subscribe-btn:hover {
+  background-color: #1a8cd8;
+}
+
+.trends-box, .follow-box {
+  background-color: #16181c;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.trends-box h3, .follow-box h3 {
+  padding: 12px 16px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #e7e9ea;
+  margin: 0;
+}
+
+.trends-box ul, .follow-box ul {
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-.right-column ul li {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #b0b0b0; /* Teks item list berwarna abu-abu terang */
+.trends-box li {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.right-column button {
-  background-color: #1da1f2;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 20px;
+.trends-box li:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.trend-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trend-cat {
+  font-size: 13px;
+  color: #71767b;
+}
+
+.trend-more {
+  color: #71767b;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.trend-more:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: #1d9bf0;
+}
+
+.trend-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e7e9ea;
+  margin: 2px 0;
+}
+
+.trend-count {
+  font-size: 13px;
+  color: #71767b;
+}
+
+.show-more {
+  width: 100%;
+  padding: 16px;
+  color: #1d9bf0;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.show-more:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.follow-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
-.right-column button:hover {
-  background-color: #0d8ad1;
+.follow-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-.subscribe p {
+.follow-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.follow-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.follow-name-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.follow-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e7e9ea;
+}
+
+.follow-verified {
+  width: 18px;
+  height: 18px;
+}
+
+.follow-username {
+  font-size: 15px;
+  color: #71767b;
+}
+
+.follow-btn {
+  background-color: #eff3f4;
+  color: #0f1419;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  font-weight: 700;
   font-size: 14px;
-  margin-top: 10px;
-  color: #b0b0b0; /* Teks deskripsi putih transparan */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
 }
 
-.whats-happening ul li,
-.who-to-follow ul li {
+.follow-btn:hover {
+  background-color: #d7dbdc;
+}
+
+.right-footer {
+  padding: 12px 16px 32px;
+}
+
+.right-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.right-footer .footer-link {
   font-size: 13px;
-  color: #b0b0b0; /* Teks item list dengan warna abu-abu terang */
+  color: #71767b;
+  padding-right: 12px;
+  line-height: 2;
+  text-decoration: none;
 }
 
-.who-to-follow ul li {
-  font-style: italic;
+.right-footer .footer-link:hover {
+  text-decoration: underline;
+}
+
+.right-footer .footer-copy {
+  font-size: 13px;
+  color: #71767b;
+  display: block;
+  margin-top: 4px;
+}
+
+.search-wrapper {
+  position: sticky;
+  top: 5px;
+  z-index: 10;
+}
+
+.search-clear {
+  color: #1d9bf0;
+  background: #1d9bf0;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-clear i {
+  color: #000 !important;
+  font-size: 12px;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.2);
+  margin-top: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-loading,
+.search-no-results {
+  padding: 20px 16px;
+  color: #71767b;
+  font-size: 15px;
+  text-align: center;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.search-result-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.search-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e7e9ea;
+}
+
+.search-result-username {
+  font-size: 14px;
+  color: #71767b;
+}
+
+.trends-empty,
+.follow-empty {
+  padding: 16px;
+  color: #71767b;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .right-column {
+    display: none;
+  }
 }

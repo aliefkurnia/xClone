@@ -9,6 +9,9 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
+// Load environment variables from backend/.env
+require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);

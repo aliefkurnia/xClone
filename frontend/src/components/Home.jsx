@@ -1,66 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useUser, useAuth } from "@clerk/react";
+import { api } from "../services/api";
 import LeftColumn from "./LeftColumn";
 import CenterColumn from "./CenterColumn";
 import RightColumn from "./RightColumn";
-import Logo from "../assets/xicon.svg"; // Mengimpor logo
 import "./Home.css";
 
 const Home = () => {
-  const [user, setUser] = useState(null);
+  const { user: clerkUser } = useUser();
+  const { getToken } = useAuth();
+  const [dbUser, setDbUser] = useState(null);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
-      const userId = localStorage.getItem("user_id");
-
-      if (token && userId) {
-        try {
-          const response = await fetch(
-            `http://localhost:5000/api/users/${userId}`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (response.ok) {
-            const userData = await response.json();
-            setUser(userData);
-          } else {
-            console.error("Failed to fetch user data");
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
+    const syncUser = async () => {
+      if (!clerkUser) return;
+      try {
+        const user = await api.syncUser(
+          {
+            name: clerkUser.fullName || clerkUser.firstName || "User",
+            username: clerkUser.username || clerkUser.id,
+            email: clerkUser.primaryEmailAddress?.emailAddress,
+            profile_picture: clerkUser.imageUrl,
+          },
+          getToken
+        );
+        setDbUser(user);
+      } catch (err) {
+        console.error("Failed to sync user:", err);
       }
     };
-
-    fetchUserData();
-  }, []);
+    syncUser();
+  }, [clerkUser, getToken]);
 
   return (
     <div className="home-container">
-      <header className="header">
-        <div className="logo">
-          <img src={Logo} alt="Logo" /> {/* Replace text with logo image */}
-        </div>
-        <nav className="nav-links">
-          <a href="#">For You</a>
-          <a href="#">Following</a>
-        </nav>
-        <div className="search-box">
-          <input type="text" placeholder="Search..." />
-        </div>
-      </header>
-
-      <main className="main-content">
-        <LeftColumn user={user} /> {/* Pass user data to LeftColumn */}
-        <CenterColumn />
-        <RightColumn />
-      </main>
+      <LeftColumn user={dbUser} />
+      <CenterColumn />
+      <RightColumn />
     </div>
   );
 };

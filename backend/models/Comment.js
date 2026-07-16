@@ -1,24 +1,20 @@
 "use strict";
-const { Model, DataTypes } = require("sequelize");
+const { Model } = require("sequelize");
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     static associate(models) {
-      // Menambahkan asosiasi dengan Post (Comment milik satu Post)
       Comment.belongsTo(models.Post, {
-        foreignKey: "post_id", // kolom yang menjadi foreign key di Comment
-        as: "post", // alias yang digunakan dalam query
+        foreignKey: "post_id",
+        as: "post",
       });
-
-      // Menambahkan asosiasi dengan User (Comment milik satu User)
       Comment.belongsTo(models.User, {
-        foreignKey: "user_id", // kolom yang menjadi foreign key di Comment
-        as: "user", // alias yang digunakan dalam query
+        foreignKey: "user_id",
+        as: "user",
       });
     }
   }
 
-  // Inisialisasi model Comment
   Comment.init(
     {
       comment_id: {
@@ -29,14 +25,14 @@ module.exports = (sequelize) => {
       post_id: {
         type: DataTypes.UUID,
         references: {
-          model: "Posts", // mengacu pada model Post
+          model: "posts",
           key: "post_id",
         },
       },
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
-          model: "Users", // mengacu pada model User
+          model: "users",
           key: "user_id",
         },
       },
@@ -51,7 +47,9 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Comment", // Nama model ini
+      modelName: "Comment",
+      tableName: "comments",
+      timestamps: false,
     }
   );
 

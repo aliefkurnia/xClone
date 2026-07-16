@@ -1,18 +1,36 @@
-import React from "react";
-import "./CenterColumn.css"; // File CSS untuk styling center-column
+import React, { useState } from "react";
+import PostComposer from "./PostComposer";
+import Feed from "./Feed";
+import "./CenterColumn.css";
 
 const CenterColumn = () => {
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [activeTab, setActiveTab] = useState("for-you");
+
+  const handlePostCreated = () => {
+    setRefreshKey((prev) => prev + 1);
+  };
+
   return (
     <div className="center-column">
-      <section className="status-feed">
-        <h2>Status Feed</h2>
-        <div className="status-item">
-          <p>Status 1</p>
+      <div className="center-header">
+        <div className="center-tabs">
+          <button
+            className={"tab-btn" + (activeTab === "for-you" ? " tab-active" : "")}
+            onClick={() => setActiveTab("for-you")}
+          >
+            For you
+          </button>
+          <button
+            className={"tab-btn" + (activeTab === "following" ? " tab-active" : "")}
+            onClick={() => setActiveTab("following")}
+          >
+            Following
+          </button>
         </div>
-        <div className="status-item">
-          <p>Status 2</p>
-        </div>
-      </section>
+      </div>
+      <PostComposer onPostCreated={handlePostCreated} />
+      <Feed key={refreshKey} />
     </div>
   );
 };

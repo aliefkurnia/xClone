@@ -1,0 +1,166 @@
+.post-composer {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.composer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.composer-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.composer-input-wrapper {
+  min-height: 52px;
+}
+
+.composer-content textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: #e7e9ea;
+  font-size: 20px;
+  resize: none;
+  padding: 12px 0;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.composer-content textarea::placeholder {
+  color: #71767b;
+}
+
+.composer-audience {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #1d9bf0;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  width: fit-content;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.composer-audience:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+.composer-audience i {
+  font-size: 14px;
+}
+
+.composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #2f3336;
+}
+
+.composer-icons {
+  display: flex;
+  gap: 0;
+}
+
+.c-icon-btn {
+  color: #1d9bf0;
+  font-size: 16px;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.c-icon-btn:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+.composer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.char-counter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.char-circle {
+  width: 24px;
+  height: 24px;
+}
+
+.char-circle-bg {
+  stroke: #2f3336;
+}
+
+.char-circle-fill {
+  stroke: #1d9bf0;
+  transition: stroke-dasharray 0.3s;
+}
+
+.char-circle-fill.warning {
+  stroke: #ffd400;
+}
+
+.char-circle-fill.over {
+  stroke: #f4212e;
+}
+
+.char-remaining {
+  position: absolute;
+  font-size: 11px;
+  color: #71767b;
+  font-weight: 500;
+}
+
+.char-remaining.over {
+  color: #f4212e;
+}
+
+.composer-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #2f3336;
+}
+
+.c-post-btn {
+  background-color: #1d9bf0;
+  color: white;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.c-post-btn:hover:not(:disabled) {
+  background-color: #1a8cd8;
+}
+
+.c-post-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

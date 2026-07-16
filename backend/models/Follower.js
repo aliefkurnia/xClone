@@ -1,23 +1,20 @@
 "use strict";
-const { Model, DataTypes } = require("sequelize");
+const { Model } = require("sequelize");
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   class Follower extends Model {
     static associate(models) {
-      // Asosiasi dengan User (Follower milik dua User)
       Follower.belongsTo(models.User, {
-        foreignKey: "follower_user_id", // kolom yang menjadi foreign key di Follower
-        as: "followerUser", // alias yang digunakan dalam query untuk follower
+        foreignKey: "follower_user_id",
+        as: "followerUser",
       });
-
       Follower.belongsTo(models.User, {
-        foreignKey: "followed_user_id", // kolom yang menjadi foreign key di Follower
-        as: "followedUser", // alias yang digunakan dalam query untuk followed
+        foreignKey: "followed_user_id",
+        as: "followedUser",
       });
     }
   }
 
-  // Inisialisasi model Follower
   Follower.init(
     {
       follower_id: {
@@ -26,16 +23,16 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
       },
       follower_user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
-          model: "Users", // mengacu pada model User
+          model: "users",
           key: "user_id",
         },
       },
       followed_user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
-          model: "Users", // mengacu pada model User
+          model: "users",
           key: "user_id",
         },
       },
@@ -46,7 +43,9 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Follower", // Nama model ini
+      modelName: "Follower",
+      tableName: "followers",
+      timestamps: false,
     }
   );
 

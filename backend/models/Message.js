@@ -5,15 +5,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Message extends Model {
     static associate(models) {
-      // Menambahkan asosiasi dengan User (Message dikirim oleh satu User dan diterima oleh satu User)
       Message.belongsTo(models.User, {
-        foreignKey: "sender_user_id", // kolom yang menjadi foreign key untuk pengirim
-        as: "sender", // alias untuk pengirim
+        foreignKey: "sender_user_id",
+        as: "sender",
       });
-
       Message.belongsTo(models.User, {
-        foreignKey: "receiver_user_id", // kolom yang menjadi foreign key untuk penerima
-        as: "receiver", // alias untuk penerima
+        foreignKey: "receiver_user_id",
+        as: "receiver",
       });
     }
   }
@@ -26,16 +24,16 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
       },
       sender_user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
-          model: "Users", // Nama model yang menjadi referensi
+          model: "users",
           key: "user_id",
         },
       },
       receiver_user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
-          model: "Users", // Nama model yang menjadi referensi
+          model: "users",
           key: "user_id",
         },
       },
@@ -50,9 +48,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Message", // Nama model
-      tableName: "messages", // Nama tabel yang sesuai
-      timestamps: false, // Jika Anda tidak ingin Sequelize mengelola createdAt dan updatedAt otomatis
+      modelName: "Message",
+      tableName: "messages",
+      timestamps: false,
     }
   );
 

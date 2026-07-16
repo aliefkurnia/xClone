@@ -5,10 +5,44 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      // Menambahkan asosiasi dengan User (Post milik satu User)
+      // Asosiasi dengan User (Post milik satu User)
       Post.belongsTo(models.User, {
-        foreignKey: "user_id", // kolom yang menjadi foreign key di Post
-        as: "user", // alias yang digunakan dalam query
+        foreignKey: "user_id",
+        as: "user",
+      });
+
+      // Asosiasi untuk Likes
+      Post.hasMany(models.Like, {
+        foreignKey: "post_id",
+        as: "likes",
+      });
+
+      // Asosiasi untuk Comments (Replies)
+      Post.hasMany(models.Comment, {
+        foreignKey: "post_id",
+        as: "comments",
+      });
+
+      // Self-referencing untuk Replies (Parent Post)
+      Post.hasMany(models.Post, {
+        foreignKey: "parent_post_id",
+        as: "replies",
+      });
+
+      Post.belongsTo(models.Post, {
+        foreignKey: "parent_post_id",
+        as: "parentPost",
+      });
+
+      // Self-referencing untuk Retweets
+      Post.hasMany(models.Post, {
+        foreignKey: "retweet_of_post_id",
+        as: "retweets",
+      });
+
+      Post.belongsTo(models.Post, {
+        foreignKey: "retweet_of_post_id",
+        as: "originalPost",
       });
     }
   }
@@ -21,18 +55,39 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
       },
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
+        allowNull: false,
         references: {
-          model: "Users", // Nama model yang menjadi referensi
+          model: "users",
           key: "user_id",
         },
       },
       content: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       media_url: {
         type: DataTypes.STRING,
+      },
+      parent_post_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: "posts",
+          key: "post_id",
+        },
+      },
+      retweet_of_post_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: "posts",
+          key: "post_id",
+        },
+      },
+      view_count: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -41,9 +96,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Post", // Nama model
-      tableName: "posts", // Nama tabel yang sesuai
-      timestamps: false, // Jika Anda tidak ingin Sequelize mengelola createdAt dan updatedAt otomatis
+      modelName: "Post",
+      tableName: "posts",
+      timestamps: false,
     }
   );
 

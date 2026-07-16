@@ -1,0 +1,327 @@
+.feed {
+  border-top: 1px solid #2f3336;
+}
+
+.feed-loading {
+  padding: 0;
+}
+
+.skeleton-post {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3336;
+  flex-shrink: 0;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: #2f3336;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-line.short {
+  width: 40%;
+}
+
+.skeleton-line.medium {
+  width: 70%;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.no-posts {
+  padding: 60px 32px;
+  text-align: center;
+  color: #71767b;
+}
+
+.no-posts h2 {
+  font-size: 30px;
+  color: #e7e9ea;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.no-posts p {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #71767b;
+}
+
+.post-card {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.post-card:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.post-main {
+  display: flex;
+  gap: 12px;
+}
+
+.post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.post-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.post-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #e7e9ea;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-verified {
+  display: flex;
+  align-items: center;
+}
+
+.verified-badge {
+  width: 18px;
+  height: 18px;
+}
+
+.post-username, .post-time {
+  font-size: 15px;
+  color: #71767b;
+  white-space: nowrap;
+}
+
+.post-username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-dot {
+  color: #71767b;
+  padding: 0 4px;
+}
+
+.post-more-btn {
+  margin-left: auto;
+  color: #71767b;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.post-more-btn:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: #1d9bf0;
+}
+
+.post-text {
+  font-size: 15px;
+  color: #e7e9ea;
+  line-height: 1.4;
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.post-media {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #2f3336;
+  margin-bottom: 12px;
+}
+
+.post-media img {
+  width: 100%;
+  max-height: 510px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 425px;
+  margin-top: 4px;
+}
+
+.p-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #71767b;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.p-action .action-icon {
+  font-size: 16px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+/* Reply - blue */
+.p-action.action-reply:hover {
+  color: #1d9bf0;
+}
+.p-action.action-reply:hover .action-icon {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Repost - green */
+.p-action.action-repost:hover {
+  color: #00ba7c;
+}
+.p-action.action-repost:hover .action-icon {
+  background-color: rgba(0, 186, 124, 0.1);
+}
+.p-action.action-repost.active {
+  color: #00ba7c;
+}
+
+/* Like - pink */
+.p-action.action-like:hover {
+  color: #f91880;
+}
+.p-action.action-like:hover .action-icon {
+  background-color: rgba(249, 24, 128, 0.1);
+}
+.p-action.action-like.active {
+  color: #f91880;
+}
+.p-action.action-like.active .action-icon i {
+  font-weight: 900;
+}
+
+/* Views - blue */
+.p-action.action-views:hover {
+  color: #1d9bf0;
+}
+.p-action.action-views:hover .action-icon {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Bookmark - blue */
+.p-action.action-bookmark:hover {
+  color: #1d9bf0;
+}
+.p-action.action-bookmark:hover .action-icon {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Share - blue */
+.p-action.action-share:hover {
+  color: #1d9bf0;
+}
+.p-action.action-share:hover .action-icon {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+.post-actions-right {
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+}
+
+.retweet-indicator {
+  color: #71767b;
+  font-size: 13px;
+  margin-left: 52px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.retweet-indicator i {
+  font-size: 14px;
+}
+
+.quote-post {
+  border: 1px solid #2f3336;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 8px 0 12px;
+  transition: background-color 0.2s;
+}
+
+.quote-post:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.quote-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.quote-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.quote-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e7e9ea;
+}
+
+.quote-text {
+  font-size: 14px;
+  color: #e7e9ea;
+  margin: 0;
+}

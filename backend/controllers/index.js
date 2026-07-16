@@ -1,11 +1,10 @@
-// controllers/index.js
-const UserController = require("./userController");
-const PostController = require("./postController");
-const LikeController = require("./likeController");
-const CommentController = require("./commentController");
-const FollowerController = require("./followerController");
-const MessageController = require("./messageController");
-const AuthController = require("./AuthController");
+const UserController = require("./UserController");
+const PostController = require("./PostController");
+const LikeController = require("./LikeController");
+const CommentController = require("./CommentController");
+const FollowerController = require("./FollowerController");
+const MessageController = require("./MessageController");
+
 module.exports = {
   UserController,
   PostController,
@@ -13,5 +12,4 @@ module.exports = {
   CommentController,
   FollowerController,
   MessageController,
-  AuthController,
 };

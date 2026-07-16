@@ -1,53 +1,57 @@
-// backend/controllers/MessageController.js
-const { Message } = require("../models");
+﻿const { Message, User } = require("../models");
 
 const MessageController = {
-  // Mengirim pesan
-  sendMessage: async (req, res) => {
-    try {
-      const { sender_user_id, receiver_user_id, content } = req.body;
-      const message = await Message.create({
-        sender_user_id,
-        receiver_user_id,
-        content,
-      });
-      res.status(201).json(message);
-    } catch (err) {
-      res.status(500).json({ message: "Error sending message", error: err });
-    }
-  },
-
-  // Membaca semua pesan
   getAllMessages: async (req, res) => {
     try {
-      const messages = await Message.findAll();
-      res.status(200).json(messages);
+      const user_id = req.auth.userId;
+      const msgs = await Message.findAll({
+        where: { sender_user_id: user_id },
+        include: [{ model: User, as: "receiver", attributes: ["user_id","name","username","profile_picture"] }],
+        order: [["created_at", "DESC"]],
+      });
+      res.status(200).json(msgs);
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error fetching all messages", error: err });
+      console.error(err);
+      res.status(500).json({ message: "Error fetching messages", error: err.message });
     }
   },
 
-  // Membaca semua pesan berdasarkan receiver_user_id (specific user)
   getMessagesForUser: async (req, res) => {
     try {
-      const { user_id } = req.params; // Mendapatkan user_id dari parameter URL
-      const messages = await Message.findAll({
+      const user_id = req.auth.userId;
+      const otherUserId = req.params.user_id;
+      const msgs = await Message.findAll({
         where: {
-          receiver_user_id: user_id, // Mengambil pesan berdasarkan receiver_user_id
+          [require("sequelize").Op.or]: [
+            { sender_user_id: user_id, receiver_user_id: otherUserId },
+            { sender_user_id: otherUserId, receiver_user_id: user_id },
+          ],
         },
+        include: [
+          { model: User, as: "sender", attributes: ["user_id","name","username","profile_picture"] },
+          { model: User, as: "receiver", attributes: ["user_id","name","username","profile_picture"] },
+        ],
+        order: [["created_at", "ASC"]],
       });
-      if (messages.length === 0) {
-        return res
-          .status(404)
-          .json({ message: "No messages found for this user" });
-      }
-      res.status(200).json(messages);
+      res.status(200).json(msgs);
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error fetching messages for user", error: err });
+      console.error(err);
+      res.status(500).json({ message: "Error fetching messages", error: err.message });
+    }
+  },
+
+  sendMessage: async (req, res) => {
+    try {
+      const sender_user_id = req.auth.userId;
+      const { receiver_user_id, content } = req.body;
+      const msg = await Message.create({ sender_user_id, receiver_user_id, content });
+      const full = await Message.findByPk(msg.message_id, {
+        include: [{ model: User, as: "sender", attributes: ["user_id","name","username","profile_picture"] }],
+      });
+      res.status(201).json(full);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error sending message", error: err.message });
     }
   },
 };

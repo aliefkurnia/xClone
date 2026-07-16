@@ -1,149 +1,271 @@
-/* LeftColumn Styles */
 .left-column {
-  flex: 1;
-  max-width: 500px;
+  width: 275px;
+  flex-shrink: 0;
 }
 
-/* Status Links */
-.status-links {
-  padding: 0;
+.left-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  overflow-y: auto;
 }
 
-.status-links li {
-  margin-bottom: 15px;
-}
-
-.status-links li a {
-  font-size: 24px;
-  color: #ffffff;
-  padding: 10px; /* Increased padding for better spacing */
+.x-logo-link {
   display: flex;
   align-items: center;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.status-links li a:hover {
-  background-color: #444;
-  border-radius: 30px;
-}
-
-.status-links li a .fa {
-  margin-right: 15px; /* Tambah jarak */
-}
-/* Post Button */
-.post-button {
-  background-color: #1da1f2;
-  color: white;
-  padding: 15px;
-  border-radius: 30px;
-  width: 100%;
-  font-size: 16px;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 2px 0;
+  transition: background-color 0.2s;
+  color: #e7e9ea;
+  background: none;
   border: none;
+}
+
+.x-logo-link:hover {
+  background-color: rgba(231, 233, 234, 0.1);
+}
+
+.x-logo-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px;
+  border-radius: 9999px;
+  font-size: 20px;
+  color: #e7e9ea;
+  background: none;
+  border: none;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.nav-link:hover {
+  background-color: rgba(231, 233, 234, 0.1);
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.nav-link i {
+  font-size: 24px;
+  width: 26px;
+  text-align: center;
+}
+
+.nav-icon-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.nav-label {
+  font-size: 20px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.more-menu-wrapper {
+  position: relative;
+}
+
+.more-menu {
+  position: absolute;
+  bottom: 52px;
+  left: 0;
+  background-color: #000;
+  border: 1px solid #2f3336;
+  border-radius: 12px;
+  min-width: 260px;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.more-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
+  color: #e7e9ea;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.more-menu-item:hover {
+  background-color: rgba(231, 233, 234, 0.1);
+}
+
+.more-menu-item i {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #1d9bf0;
+  color: white;
+  border-radius: 9999px;
+  font-size: 17px;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s;
 }
 
 .post-button:hover {
-  background-color: #1796d0;
+  background-color: #1a8cd8;
 }
 
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+.post-btn-text {
+  display: inline;
+}
+
+.post-btn-icon {
+  display: none;
+  width: 24px;
+  height: 24px;
+}
+
+.user-profile-card {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.modal-content {
-  padding: 20px;
-  border-radius: 8px;
-  width: 500px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.modal-actions button {
-  background-color: #1da1f2;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 9999px;
   cursor: pointer;
+  margin-top: auto;
+  margin-bottom: 12px;
+  transition: background-color 0.2s;
+  position: relative;
 }
 
-.modal-actions button:hover {
-  background-color: #1796d0;
+.user-profile-card:hover {
+  background-color: rgba(231, 233, 234, 0.1);
 }
 
-/* User Profile */
-.user-profile {
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
   display: flex;
-  align-items: center;
-  margin-top: 30px;
+  flex-direction: column;
+  min-width: 0;
 }
 
-.profile-photo img {
-  width: 50px; /* Ubah sesuai kebutuhan, misalnya 50px */
-  height: 50px; /* Ubah sesuai kebutuhan, misalnya 50px */
-  border-radius: 50%; /* Membuat gambar berbentuk lingkaran */
-  margin-right: 15px;
-  object-fit: cover; /* Memastikan gambar sesuai dengan ukuran yang diatur */
+.display-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #e7e9ea;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.profile-info .username {
+.username {
+  font-size: 15px;
+  color: #71767b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-profile-card > i {
+  color: #71767b;
   font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
 }
 
-.profile-info .user-handle {
-  font-size: 14px;
-  color: #aaa;
-}
-/* Styling untuk titik tiga */
-.ellipsis-icon {
-  cursor: pointer;
-  margin-left: 10px;
-  color: #aaa;
-}
-
-/* Styling untuk menu pop-up dengan tema gelap */
 .logout-menu {
   position: absolute;
-  top: 760px; /* Sesuaikan posisi dari elemen profile */
-  right: 1265px;
-  background-color: #000000; /* Mengubah latar belakang ke warna gelap */
-  border: 1px solid #555; /* Warna border lebih gelap */
-  border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.212); /* Menambahkan bayangan lebih gelap */
-  padding: 12px;
-  width: 320px;
-  text-align: right;
+  bottom: 72px;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  border: 1px solid #2f3336;
+  border-radius: 16px;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
-/* Styling untuk tombol di dalam logout-menu */
 .logout-menu button {
-  color: white;
-  padding: 4px 15px;
-  cursor: pointer;
-  margin: 5px 0;
   width: 100%;
-  font-weight: bold; /* Menambahkan ketebalan font */
-  font-size: medium;
-  background-color: #000000;
+  padding: 16px;
+  color: #e7e9ea;
   text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+.logout-menu button:hover {
+  background-color: rgba(231, 233, 234, 0.1);
+}
+
+@media (max-width: 1280px) {
+  .left-column {
+    width: 88px;
+  }
+
+  .nav-label,
+  .post-btn-text,
+  .user-info,
+  .user-profile-card > i {
+    display: none;
+  }
+
+  .post-btn-icon {
+    display: block;
+  }
+
+  .nav-link {
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+
+  .post-button {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+
+  .user-profile-card {
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
 }
